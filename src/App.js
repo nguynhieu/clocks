@@ -4,21 +4,19 @@ import {
 } from "react-router-dom";
 
 import { Home, PageNotfound } from './pages';
-
-import { Clock } from './components';
-
-import './App.css';
 import PublicRoute from "./routes/PublicRoute";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss';
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <PublicRoute exact path="/" component={Home} />
-        <PublicRoute path="/" component={PageNotfound} />
-      </Switch>
       <div className="app">
-        <Clock />
+        <Switch>
+          <PublicRoute exact path="/" component={Home} />
+          <PublicRoute path="/" component={PageNotfound} />
+        </Switch>
       </div>
     </Router>
   );

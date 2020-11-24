@@ -1,0 +1,33 @@
+@import '../../assets/scss/_var.scss';
+
+.header {
+	width: 100%;
+	padding: 10px 0;
+	margin-bottom: 20px;
+
+	img {
+		width: 100px;
+	}
+
+	span {
+		font-size: 2rem;
+		font-weight: bold;
+		position: relative;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		top: 10px;
+	}
+}
+
+@include sm {
+	.header {
+		img {
+			width: 60px;
+		}
+
+		span {
+			font-size: 1rem;
+			top: 0;
+		}
+	}
+}

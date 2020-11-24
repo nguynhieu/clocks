@@ -1,0 +1,110 @@
+@import '../../assets/scss/_var.scss';
+
+.main-clock {
+	position: relative;
+	max-width: 800px;
+	margin: 0 auto;
+
+	.main-clock-main {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		position: relative;
+		gap: 1rem;
+
+		.show-time {
+			position: relative;
+			background: #2196f3;
+			height: calc(100% + 30px);
+
+			div {
+				&:nth-child(1) {
+					font-size: 8rem;
+					text-align: center;
+				}
+
+				&:nth-child(2) {
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					height: 30px;
+					line-height: 30px;
+					background: brown;
+					width: 100%;
+					text-align: center;
+					text-transform: uppercase;
+					letter-spacing: 2px;
+					font-size: 0.925rem;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+
+	.main-clock-reflect {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		margin: auto;
+		position: relative;
+		gap: 1rem;
+		transform: scaleY(-1);
+		opacity: 0.2;
+		top: 60px;
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(to top, transparent, #060a1f);
+		}
+
+		.show-time {
+			position: relative;
+			background: #2196f3;
+			height: calc(100% + 30px);
+
+			div {
+				&:nth-child(1) {
+					font-size: 8rem;
+					text-align: center;
+				}
+
+				&:nth-child(2) {
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					height: 30px;
+					line-height: 30px;
+					background: brown;
+					width: 100%;
+					text-align: center;
+					text-transform: uppercase;
+					letter-spacing: 2px;
+					font-size: 0.925rem;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+
+@include md {
+	.main-clock .main-clock-main .show-time div:nth-child(1),
+	.main-clock .main-clock-reflect .show-time div:nth-child(1) {
+		font-size: 6rem;
+	}
+}
+
+@include sm {
+	.main-clock .main-clock-main .show-time div:nth-child(1),
+	.main-clock .main-clock-reflect .show-time div:nth-child(1) {
+		font-size: 4rem;
+	}
+
+	.main-clock .main-clock-main .show-time div:nth-child(2),
+	.main-clock .main-clock-reflect .show-time div:nth-child(2) {
+		font-size: 0.725rem;
+	}
+}

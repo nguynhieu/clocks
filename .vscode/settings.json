@@ -1,6 +1,6 @@
 {
   "workbench.editorAssociations": [],
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "[javascript]": {
     "editor.formatOnSave": true
   }

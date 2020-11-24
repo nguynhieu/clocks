@@ -1,0 +1,28 @@
+$primary-color: #393b44;
+$seconddary-color: #8d93ab;
+$third-color: #d6e0f0;
+$fourth-color: #f1f3f8;
+
+@mixin xs {
+	@media (max-width: 576px) {
+		@content;
+	}
+}
+
+@mixin sm {
+	@media (max-width: 768px) {
+		@content;
+	}
+}
+
+@mixin md {
+	@media (max-width: 998px) {
+		@content;
+	}
+}
+
+@mixin lg {
+	@media (max-width: 1200px) {
+		@content;
+	}
+}
