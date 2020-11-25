@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import moment from 'moment-timezone';
 
 import cls from './style.module.scss';
 
-const MainClock = () => {
+const MainClock = ({ currentTimezone }) => {
+  
+  const [currentTime, setCurrentTime] = useState(() => moment().tz(currentTimezone));
+  const [hours, setHours] = useState(() => currentTime.format('HH'));
+  const [minutes, setMinutes] = useState(() => currentTime.format('mm'));
+  const [seconds, setSeconds] = useState(() => currentTime.format('ss'));
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(moment().tz(currentTimezone));
+      setHours(currentTime.format('HH'));
+      setMinutes(currentTime.format('mm'));
+      setSeconds(currentTime.format('ss'));
+    }, 1000)
+
+    return () => {
+      clearInterval(intervalId);
+    }
+  }, [currentTime, currentTimezone])
+
   return <div className={cls['main-clock']}>
     <div className={cls['main-clock-main']}>
       <div className={cls['show-time']}>
         <div>
-          00
+          {hours}
         </div>
         <div>
           Hours
@@ -16,7 +36,7 @@ const MainClock = () => {
       
       <div className={cls['show-time']}>
         <div>
-          00
+          {minutes}
         </div>
         <div>
           Minutes
@@ -25,7 +45,7 @@ const MainClock = () => {
 
       <div className={cls['show-time']}>
         <div>
-          00
+          {seconds}
         </div>
         <div>
           Seconds

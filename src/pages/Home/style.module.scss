@@ -2,4 +2,26 @@
 	background: #060a1f;
 	min-height: 100vh;
 	position: relative;
+
+	.main-clock {
+		position: relative;
+
+		h3 {
+			font-weight: bold;
+			text-align: center;
+			letter-spacing: 2px;
+		}
+	}
+
+	.recent-clocks {
+		margin-top: 120px;
+		position: relative;
+		padding-top: 50px;
+
+		h3 {
+			font-weight: bold;
+			text-align: center;
+			letter-spacing: 2px;
+		}
+	}
 }
