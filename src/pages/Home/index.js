@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 
 import cls from './style.module.scss';
 
-import { MainClock, Header } from '../../components';
+import { MainClock, Clock, Header } from '../../components';
 import { TimeContext } from "../../contexts/TimeContext";
 
 const Home = () => {
-  const { currentTimezone, recentTimezones }  = useContext(TimeContext)
+  const { currentTimezone, recentTimezones }  = useContext(TimeContext);
 
   return (
     <div className={cls.home}>
@@ -18,8 +18,12 @@ const Home = () => {
         </div>
 
         <div className={cls['recent-clocks']}>
-          <h3 className="text-center mb-4">Recent clocks</h3>
-          <MainClock currentTimezone={currentTimezone} />
+          <h3 className="text-center">Recent clocks</h3>
+          <div className={cls['recent-clocks-container']}>
+            {
+              recentTimezones.map((item, index) => <Clock key={index} timezone={item}/> )
+            }
+          </div>
         </div>
       </div>
     </div>
