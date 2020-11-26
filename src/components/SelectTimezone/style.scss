@@ -1,0 +1,39 @@
+.ant-select {
+	height: 100%;
+	width: 100% !important;
+
+	.ant-select-selector {
+		height: 100% !important;
+
+		.ant-select-selection-placeholder,
+		.ant-select-selection-item {
+			top: 0;
+			line-height: 40px !important;
+			font-size: 1.25rem;
+		}
+		.ant-select-selection-search {
+			input {
+				height: 100% !important;
+				top: 0;
+				position: absolute;
+				font-size: 1.25rem;
+			}
+		}
+	}
+	.ant-select-arrow {
+		position: absolute;
+		right: 1rem;
+		top: 50%;
+
+		.anticon {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		svg {
+			font-size: 1.25rem;
+		}
+	}
+}

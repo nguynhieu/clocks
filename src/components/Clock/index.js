@@ -51,35 +51,36 @@ const ClockComponent = ({ timezone }) => {
   }
 
   return (
-      <div className={cls.wrapper}>
-        <DetectClick cb={() => { setOpenOption(false) }}>
-          <div className={recentTimezones.length === 1 && cls['action-none']}>
+    <div className={cls.wrapper}>
+      <DetectClick cb={() => { setOpenOption(false) }}>
+        <div className={recentTimezones.length === 1 ? cls['action-none'] : ''}>
 
-              <div className={cls[`clock-option`]}>
-                <Menu onClick={onClick}/>
-                {openOption && (
-                  <div>
-                    <li>View</li>
-                    <li>Delete</li>
-                  </div>
-                )}
-              </div>
-          </div>
-        </DetectClick>
-
-        <div className={cls.clock}>
-          <div className={cls.hour}>
-            <div className={cls.hr} id="hr"></div>
-          </div>
-          <div className={cls.min}>
-            <div className={cls.mn} id="mn"></div>
-          </div>
-          <div className={cls.sec}>
-            <div className={cls.sc} id="sc"></div>
-          </div>
-          <div className={cls.period}>{period}</div>
+            <div className={cls[`clock-option`]}>
+              <Menu onClick={onClick}/>
+              {openOption && (
+                <div>
+                  <li>View</li>
+                  <li>Delete</li>
+                </div>
+              )}
+            </div>
         </div>
+      </DetectClick>
+
+      <div className={cls.clock}>
+        <div className={cls.hour}>
+          <div className={cls.hr} id="hr"></div>
+        </div>
+        <div className={cls.min}>
+          <div className={cls.mn} id="mn"></div>
+        </div>
+        <div className={cls.sec}>
+          <div className={cls.sc} id="sc"></div>
+        </div>
+        <div className={cls.period}>{period}</div>
       </div>
+      <p>{timezone}</p>
+    </div>
   )
 }
 

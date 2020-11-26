@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export const TimeContext = React.createContext();
 
@@ -18,13 +18,19 @@ export const TimeProvider = ({ children }) => {
   const [recentTimezones, setRecentTimezones] = useState(() => {
     let timezones;
     timezones = localStorage.getItem('recentTimezones');
+
     if (!timezones) {
       timezones = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      localStorage.setItem('recentTimezones', JSON.stringify([timezones]));
       return [timezones];
     };
+
     return JSON.parse(timezones);
   });
+
+  useEffect(() => {
+    localStorage.setItem('recentTimezones', JSON.stringify(recentTimezones));
+    localStorage.setItem('currentTimezone', currentTimezone);
+  }, [currentTimezone, recentTimezones])
   
   return (
     <TimeContext.Provider value={{

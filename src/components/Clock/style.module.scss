@@ -154,6 +154,14 @@
 			}
 		}
 	}
+
+	p {
+		text-align: center;
+		margin-top: 1.25rem;
+		letter-spacing: 1px;
+		font-weight: bold;
+		color: $secondary-color;
+	}
 }
 
 @keyframes showClock {

@@ -8,6 +8,7 @@ import { TimeProvider } from './contexts/TimeContext';
 import { Home, PageNotfound } from './pages';
 import PublicRoute from "./routes/PublicRoute";
 
+import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 
