@@ -9,7 +9,7 @@ import { Menu } from '../../assets/images';
 
 import cls from './style.module.scss';
 
-const ClockComponent = ({ timezone }) => {
+const ClockComponent = ({ timezone, uniqueId, viewClock, deleteClock }) => {
   const { recentTimezones } = useContext(TimeContext);
 
   const [time, setTime] = useState(() => moment().tz(timezone));
@@ -37,9 +37,9 @@ const ClockComponent = ({ timezone }) => {
   const clockAnimation = () => {
     // 1s = 6deg
     const tick = 6;
-    const hr = document.getElementById('hr');
-    const mn = document.getElementById('mn');
-    const sc = document.getElementById('sc');
+    const hr = document.getElementById(`hr-${uniqueId}`);
+    const mn = document.getElementById(`mn-${uniqueId}`);
+    const sc = document.getElementById(`sc-${uniqueId}`);
 
     hr.style.transform = `rotateZ(${hours*tick*5 + seconds/720 + minutes/2}deg)`;
     mn.style.transform = `rotateZ(${minutes*tick + seconds/10}deg)`;
@@ -49,7 +49,7 @@ const ClockComponent = ({ timezone }) => {
   const onClick = () => {
     openOption ? setOpenOption(false) : setOpenOption(true);
   }
-
+  
   return (
     <div className={cls.wrapper}>
       <DetectClick cb={() => { setOpenOption(false) }}>
@@ -58,9 +58,9 @@ const ClockComponent = ({ timezone }) => {
             <div className={cls[`clock-option`]}>
               <Menu onClick={onClick}/>
               {openOption && (
-                <div>
-                  <li>View</li>
-                  <li>Delete</li>
+                <div onClick={onClick}>
+                  <li onClick={viewClock}>View</li>
+                  <li onClick={deleteClock}>Delete</li>
                 </div>
               )}
             </div>
@@ -69,13 +69,13 @@ const ClockComponent = ({ timezone }) => {
 
       <div className={cls.clock}>
         <div className={cls.hour}>
-          <div className={cls.hr} id="hr"></div>
+          <div className={cls.hr} id={`hr-${uniqueId}`}></div>
         </div>
         <div className={cls.min}>
-          <div className={cls.mn} id="mn"></div>
+          <div className={cls.mn} id={`mn-${uniqueId}`}></div>
         </div>
         <div className={cls.sec}>
-          <div className={cls.sc} id="sc"></div>
+          <div className={cls.sc} id={`sc-${uniqueId}`}></div>
         </div>
         <div className={cls.period}>{period}</div>
       </div>

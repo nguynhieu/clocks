@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { SelectTimezone } from '../';
 import { Logo } from '../../assets/images';
@@ -10,11 +10,12 @@ import cls from './style.module.scss';
 
 const Header = () => {
   const { 
-    currentTimezone,
     setCurrentTimezone, 
     recentTimezones, 
     setRecentTimezones 
   } = useContext(TimeContext);
+
+  const [isChanging, setIsChanging] = useState(false);
 
   const onChange = (value) => {
     if (recentTimezones.length === 1 && recentTimezones[0] === value) {
