@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import { SelectTimezone } from '../';
 import { Logo } from '../../assets/images';
@@ -14,9 +14,7 @@ const Header = () => {
     recentTimezones, 
     setRecentTimezones 
   } = useContext(TimeContext);
-
-  const [isChanging, setIsChanging] = useState(false);
-
+  
   const onChange = (value) => {
     if (recentTimezones.length === 1 && recentTimezones[0] === value) {
       return;
@@ -45,7 +43,10 @@ const Header = () => {
             <span className={cls.title}>Live Clock</span>
           </div>
           <div className={cls['header-select-timezone']}>
-            <SelectTimezone data={data} onChange={onChange}/>
+            <SelectTimezone 
+              data={data} 
+              onChange={onChange}
+            />
           </div>
         </div>
       </div>

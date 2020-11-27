@@ -4,7 +4,6 @@ import moment from 'moment-timezone';
 import cls from './style.module.scss';
 
 const MainClock = ({ currentTimezone }) => {
-  
   const [currentTime, setCurrentTime] = useState(() => moment().tz(currentTimezone));
   const [hours, setHours] = useState(() => currentTime.format('HH'));
   const [minutes, setMinutes] = useState(() => currentTime.format('mm'));
@@ -56,7 +55,7 @@ const MainClock = ({ currentTimezone }) => {
     <div className={cls['main-clock-reflect']}>
       <div className={cls['show-time']}>
         <div>
-          00
+          {hours}
         </div>
         <div>
           Hours
@@ -65,7 +64,7 @@ const MainClock = ({ currentTimezone }) => {
       
       <div className={cls['show-time']}>
         <div>
-          00
+          {minutes}
         </div>
         <div>
           Minutes
@@ -74,7 +73,7 @@ const MainClock = ({ currentTimezone }) => {
 
       <div className={cls['show-time']}>
         <div>
-          00
+          {seconds}
         </div>
         <div>
           Seconds
