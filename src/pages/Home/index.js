@@ -31,6 +31,14 @@ const Home = () => {
     }
   }
 
+  const deleteAllClock = () => {
+    setRecentTimezones([currentTimezone]);
+  }
+
+  const generatorId = () => {
+    return Math.random().toString(36).substr(2, 9);
+  }
+
   return (
     <div className={cls.home}>
       <Header/>
@@ -48,8 +56,9 @@ const Home = () => {
                 <Clock 
                   viewClock={viewClock(item)}
                   deleteClock={deleteClock(item)}
+                  deleteAllClock={deleteAllClock}
                   key={index} 
-                  uniqueId={index} 
+                  uniqueId={generatorId()}
                   timezone={item}
                 /> 
               )

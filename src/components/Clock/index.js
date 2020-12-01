@@ -9,7 +9,7 @@ import { Menu } from '../../assets/images';
 
 import cls from './style.module.scss';
 
-const ClockComponent = ({ timezone, uniqueId, viewClock, deleteClock }) => {
+const ClockComponent = ({ timezone, uniqueId, viewClock, deleteClock, deleteAllClock }) => {
   const { recentTimezones } = useContext(TimeContext);
 
   const [time, setTime] = useState(() => moment().tz(timezone));
@@ -54,13 +54,13 @@ const ClockComponent = ({ timezone, uniqueId, viewClock, deleteClock }) => {
     <div className={cls.wrapper}>
       <DetectClick cb={() => { setOpenOption(false) }}>
         <div className={recentTimezones.length === 1 ? cls['action-none'] : ''}>
-
             <div className={cls[`clock-option`]}>
               <Menu onClick={onClick}/>
               {openOption && (
                 <div onClick={onClick}>
                   <li onClick={viewClock}>View</li>
                   <li onClick={deleteClock}>Delete</li>
+                  <li onClick={deleteAllClock}>Delete all</li>
                 </div>
               )}
             </div>
