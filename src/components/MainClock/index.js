@@ -10,17 +10,24 @@ const MainClock = ({ currentTimezone }) => {
   const [seconds, setSeconds] = useState(() => currentTime.format('ss'));
 
   useEffect(() => {
+    setCurrentTime(moment().tz(currentTimezone));
+  }, [currentTimezone])
+
+  useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentTime(moment().tz(currentTimezone));
-      setHours(currentTime.format('HH'));
-      setMinutes(currentTime.format('mm'));
-      setSeconds(currentTime.format('ss'));
     }, 1000)
 
     return () => {
       clearInterval(intervalId);
     }
-  }, [currentTime, currentTimezone])
+  }, [currentTimezone])
+
+  useEffect(() => {
+    setHours(currentTime.format('HH'));
+    setMinutes(currentTime.format('mm'));
+    setSeconds(currentTime.format('ss'));
+  }, [currentTime])
 
   return <div className={cls['main-clock']}>
     <div className={cls['main-clock-main']}>

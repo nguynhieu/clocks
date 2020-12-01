@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useCallback } from 'react';
 
 import moment from 'moment-timezone';
 
@@ -19,22 +19,7 @@ const ClockComponent = ({ timezone, uniqueId, viewClock, deleteClock, deleteAllC
   const [period, setPeriod] = useState(() => time.format('a'));
   const [openOption, setOpenOption] = useState(false);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTime(moment().tz(timezone));
-      setHours(time.format('hh'));
-      setMinutes(time.format('mm'));
-      setSeconds(time.format('ss'));
-      setPeriod(time.format('a'));
-    }, 1000);
-    clockAnimation();
-
-    return () => {
-      clearInterval(intervalId);
-    }
-  }, [time, timezone])
-
-  const clockAnimation = () => {
+  const clockAnimation = useCallback(() => {
     // 1s = 6deg
     const tick = 6;
     const hr = document.getElementById(`hr-${uniqueId}`);
@@ -44,7 +29,29 @@ const ClockComponent = ({ timezone, uniqueId, viewClock, deleteClock, deleteAllC
     hr.style.transform = `rotateZ(${hours*tick*5 + seconds/720 + minutes/2}deg)`;
     mn.style.transform = `rotateZ(${minutes*tick + seconds/10}deg)`;
     sc.style.transform = `rotateZ(${seconds*tick}deg)`;
-  }
+  }, [hours, minutes, seconds, uniqueId])
+
+  useEffect(() => {
+    setTime(moment().tz(timezone));
+  }, [timezone])
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTime(moment().tz(timezone));
+    }, 1000);
+    clockAnimation();
+
+    return () => {
+      clearInterval(intervalId);
+    }
+  }, [timezone, clockAnimation])
+
+  useEffect(() => {
+    setHours(time.format('hh'));
+    setMinutes(time.format('mm'));
+    setSeconds(time.format('ss'));
+    setPeriod(time.format('a'));
+  }, [time])
 
   const onClick = () => {
     openOption ? setOpenOption(false) : setOpenOption(true);

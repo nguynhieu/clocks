@@ -44,7 +44,13 @@ const Home = () => {
       <Header/>
       <div className='container'>
         <div className={cls['main-clock']}>
-          <h3 className="mb-4 main-timezone">{currentTimezone}</h3>
+          <div className="mb-4 main-timezone">
+            {
+              currentTimezone.split('').map((item, i) => 
+                <span className={cls['letter-timezone']} style={{'--i': `${i * 0.1}s`}}>{item}</span>
+              )
+            }
+          </div>
           <MainClock currentTimezone={currentTimezone} />
         </div>
 
