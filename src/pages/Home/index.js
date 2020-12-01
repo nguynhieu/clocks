@@ -47,7 +47,7 @@ const Home = () => {
           <div className="mb-4 main-timezone">
             {
               currentTimezone.split('').map((item, i) => 
-                <span className={cls['letter-timezone']} style={{'--i': `${i * 0.1}s`}}>{item}</span>
+                <span key={i} className={cls['letter-timezone']} style={{'--i': `${i * 0.1}s`}}>{item}</span>
               )
             }
           </div>
